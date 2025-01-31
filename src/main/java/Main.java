@@ -14,6 +14,10 @@ class PalindromeChecker {
         return reversed.toString();
     }
 
+    public boolean isPalindrome(String s) {
+        s = s.replaceAll("[^a-zA-Z]", "").toLowerCase();
+        return s.equals(reverse(s));
+    }
 
     public void tester() {
         String[] tests = {
