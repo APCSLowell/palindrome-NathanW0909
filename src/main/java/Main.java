@@ -7,32 +7,24 @@ public class Main {
 
 class PalindromeChecker {
     public String reverse(String s) {
-        StringBuilder reversed = new StringBuilder();
-        for (int i = s.length() - 1; i >= 0; i--) {
-            reversed.append(s.charAt(i));
-        }
-        return reversed.toString();
+        return new StringBuilder(s).reverse().toString();
     }
 
     public boolean isPalindrome(String s) {
-        s = s.replaceAll("[^a-zA-Z]", "").toLowerCase();
+        s = s.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
         return s.equals(reverse(s));
     }
 
     public void tester() {
-        String[] tests = {
-            "test",
-            "rotator",
-            "rewriter",
-            "nurses run",
-            "Madam, I'm Adam!",
-            "A Man! A Plan! A Canal! Panama!"
-        };
+        checkPalindrome("test");
+        checkPalindrome("rotator");
+        checkPalindrome("rewriter");
+        checkPalindrome("nurses run");
+        checkPalindrome("Madam, I'm Adam!");
+        checkPalindrome("A Man! A Plan! A Canal! Panama!");
+    }
 
-        System.out.println("There are " + tests.length + " lines");
-
-        for (String test : tests) {
-            System.out.println(test + (isPalindrome(test) ? " is a palindrome." : " is NOT a palindrome."));
-        }
+    public void checkPalindrome(String s) {
+        System.out.println(s + (isPalindrome(s) ? " is a palindrome." : " is NOT a palindrome."));
     }
 }
