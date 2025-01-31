@@ -10,33 +10,36 @@ public class PalindromeChecker {
             Scanner myReader = new Scanner(myFile);
             int counter = 0;
             while (myReader.hasNextLine()) {
-                String data = myReader.nextLine();
-                lines[counter] = data;
+                lines[counter] = myReader.nextLine();
                 counter++;
             }
             myReader.close();
         } catch (FileNotFoundException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
+            return;
         }
 
         System.out.println("there are " + lines.length + " lines");
-        for (int i = 0; i < lines.length; i++) {
-            if (palindrome(lines[i])) {
-                System.out.println(lines[i] + " IS a palindrome.");
+        for (String line : lines) {
+            if (palindrome(line)) {
+                System.out.println(line + " IS a palindrome.");
             } else {
-                System.out.println(lines[i] + " is NOT a palindrome.");
+                System.out.println(line + " is NOT a palindrome.");
             }
         }
     }
 
     public boolean palindrome(String word) {
-        word = word.replaceAll("[^a-zA-Z]", "").toLowerCase();
-        return word.equals(reverse(word));
+        String cleaned = word.replaceAll("[^a-zA-Z]", "").toLowerCase();
+        return cleaned.equals(reverse(cleaned));
     }
 
     public String reverse(String str) {
         return new StringBuilder(str).reverse().toString();
     }
-}
 
+    public static void main(String[] args) {
+        new PalindromeChecker().tester();
+    }
+}
